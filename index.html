@@ -36,31 +36,61 @@
 					<small>Created by <a href="">Team Darwin</a></small>
 				</p>
 			</section>
-			<section>
-				<h2>¿Que es Spring?</h2>
-				<p>
-					El Spring Framework es una plataforma Java que proporciona un amplio soporte de infraestructura para el desarrollo de aplicaciones Java.
-				</p>
-			</section>
+
 			<section>
 				<section>
-					<h2>Caracteristicas Principales</h2>
-					<ul type="circle">
-						<li>Inyección de dependencia</li>
-						<li>Programación Orientada a Aspectos incluyendo la gestión de transacciones declarativa de Spring</li>
-						<li>Spring MVC marco de aplicaciones web y servicios web REST </li>
-						<li>Apoyo fundamental para JDBC, JPA, JMS.</li>
-					</ul>
+					<h1 class="anotation">@DynamicInsert</h1>
 				</section>
 				<section>
-					<h2>Requerimientos mínimos</h2>
-					<ul type="square">
-						<li>JDK 6+ para 4.x Spring Framework</li>
-						<li>JDK 5+ para 3.x Spring Framework</li>
-					</ul>
+					<p>
+						Excluye las propiedades con valor nulo en la instrucción SQL INSERT de HIBERNATE.
+					</p>
+				</section>
+				<section>
+					<pre>
+						<code class="hljs" data-trim contenteditable style="max-height:600px">
+    Cliente cliente = new Cliente();
+    cliente.setNombre("Pedro");
+    cliente.setApellidoPaterno("Garcia");
+    cliente.setApellidoMaterno("Owen");
+    cliente.setFechaNacimiento(fechaNacimiento);
+					</code>
+					<code class="hljs" data-trim contenteditable style="max-height:600px">
+						INSERT INTO clientes(nombre,apellidoPaterno,apellidoMaterno,fechaNacimiento) VALUES(?,?,?,?);
+				</code>
+				</pre>
 				</section>
 			</section>
-			<!-- Example of nested vertical slides -->
+
+			<section>
+				<section>
+					<h1 class="anotation">@DynamicInsert</h1>
+				</section>
+				<section>
+					<p>
+						Excluye las propiedades sin modificar en la sentencia de actualización SQL de HIBERNATE.
+					</p>
+				</section>
+				<section>
+					<pre>
+						<code class="hljs" data-trim contenteditable style="max-height:600px">
+			Cliente cliente = new Cliente();
+			cliente.setNombre("Pedro");
+			cliente.setApellidoPaterno("Garcia");
+					</code>
+					<code class="hljs" data-trim contenteditable style="max-height:600px">
+						UPDATE clientes SET nombre=?,apellidoPaterno =? WHERE id=? ;
+				</code>
+				</pre>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h1 class="anotation">@Data</h1>
+					<img src="img/entiyes.png" alt="entities" />
+				</section>
+			</section>
 
 			<section>
 				<section>
@@ -182,6 +212,9 @@
 
 					</code>
 				</pre>
+				</section>
+				<section>
+					<h3 class="anotation"></h3>
 				</section>
 			</section>
 
