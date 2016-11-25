@@ -103,6 +103,89 @@
 					</p>
 					</p>
 				</section>
+				<section>
+					<h1>Sin @Data</h1>
+					<pre>
+						<code class="hljs" data-trim contenteditable style="max-height:600px">
+
+public class Auto {
+int id;
+
+String nombre;
+
+String modelo;
+
+String Color;
+
+public Auto(int id, String nombre, String modelo, String color) {
+ this.id = id;
+ this.nombre = nombre;
+ this.modelo = modelo;
+ Color = color;
+}
+
+public int getId() {
+  return id;
+}
+
+public void setId(int id) {
+  this.id = id;
+}
+
+public String getNombre() {
+  return nombre;
+}
+
+  public void setNombre(String nombre) {
+    this.nombre = nombre;
+ }
+
+  public String getModelo() {
+	    return modelo;
+  }
+
+  public void setModelo(String modelo) {
+    this.modelo = modelo;
+  }
+
+  public String getColor() {
+	    return Color;
+  }
+
+  public void setColor(String color) {
+   Color = color;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+
+	}
+
+	  @Override
+	  public int hashCode() {
+	  ...
+	  }
+}
+					</code>
+				</pre>
+				</section>
+				<section>
+					<h2 class="anotation">Con @Data</h2>
+					<pre>
+					<code class="hljs" data-trim  style="max-height:600px">
+@Data
+public class Auto {
+  int id;
+
+  String nombre;
+
+  String modelo;
+
+  String Color;
+}
+					</code>
+				</pre>
+				</section>
 			</section>
 			<section>
 				<h2 class="anotation">@Transient</h2>
@@ -285,9 +368,263 @@ public String getDetails(
 					Permite resolver la inyección de dependencia.
 				</p>
 			</section>
+			<section>
+				<section>
+					<h1 class="anotation">@SpringBootApplication</h1>
+				</section>
+				<section>
+					<p>
+						Indica que es una aplicación Spring boot, esta se coloca
+						en la clase donde esta nuestro main(<b>Metodo de arranque</b> ).
+					</p>
+				</section>
+				<section>
+					<pre>
+						<code class="hljs" data-trim  style="max-height:600px">
+package com.credex;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
+
+@SpringBootApplication
+public class CredexApplication {
+
+ public static void main(String[] args) {
+    SpringApplication.run(CredexApplication.class, args);
+  }
+}
+					</code>
+				</pre>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h1 class="anotation">@Temporal</h1>
+				</section>
+				<section>
+					<p>
+         @Temporal, esta anotación sirve para indicar que se deben persistir solo tipos de datos java.util.Date y java.util.Calendar. Los valores que acepta son:
+         <ul>
+				   <li> <b>DATE</b> – equivalente a java.sql.Date</li>
+           <li><b>TIME</b> – equivalente a java.sql.Time</li>
+           <li><b>TIMESTAMP</b> – equivalente a java.sql.Timestamp</li>
+				<ul>
+					</p>
+				</section>
+				<section>
+					<pre>
+						<code class="hljs" data-trim  style="max-height:600px">
+class Cliente {
+
+public Cliente(){}
+
+  @Column(name = “fecha_alta”)
+  @Temporal(TemporalType.DATE)
+  private java.util.Date fechaAlta;
+
+  @Column(name = “ultima_actualizacion”)
+  @Temporal(TemporalType.TIMESTAMP)
+  private java.util.Date ultimaActualizacion;
+
+}
+					</code>
+				</pre>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h1 class="anotation">@Controller</h1>
+				</section>
+				<section>
+					<p>
+						La etiqueta @Controller la emplea Spring para escanear las clases y
+						 así detectar cuales de estas clases forman los Controllers de nuestra aplicación.
+					</p>
+				</section>
+				<section>
+					<pre>
+						<code class="hljs" data-trim  style="max-height:600px">
+@Controller
+@RequestMapping("api/distribuidoras")
+public class DistribuidoraController {
+
+@RequestMapping(method = RequestMethod.GET, value = "search/distribuidorasPorNombreOClave", produces = "application/hal+json")
+	  public List<Distribuidora> buscarDistribuidora(String input, Integer idPlaza) {
+	   return this.distribuidoraApplication.buscarDistribuidoraPorNombreOClave(input, idPlaza);
+	}
+
+  @RequestMapping(method = RequestMethod.GET, value = "expediente-legal")
+  public BooleanResponse evaluarExpedienteLegal(@RequestParam("idDistribuidora") Integer idDistribuidora) throws BusinessRuleException {
+  boolean resultado = this.distribuidoraApplication.esValidoExpedienteLegalDistribuidora(idDistribuidora);
+  return  new BooleanResponse(resultado);
+	}
+}
+					</code>
+				</pre>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h1 class="anotation">@JoinColumn</h1>
+				</section>
+				<section>
+					<p>
+						Esta anotación sirve en JPA para
+						hacer referencia a la columna que es
+						clave externa en la tabla y que se encarga de definir la relación
+					</p>
+				</section>
+				<section>
+					<pre>
+					<code class="hljs" data-trim  style="max-height:600px">
+
+@Entity
+@Data
+@Table(name = "saldoDeCliente")
+public saldoDeCliente {
+
+int id;
+
+@ManyToOne
+@JoinColumn(name = "idCliente")
+private Cliente Cliente;
+
+}
+
+
+
+					</code>
+				</pre>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h1 class="anotation">Anotaciones para relacion de tablas</h1>
+				</section>
+				<section>
+					<p>
+						<ul>
+						<li><b>@ManyToOne :</b> se encarga de generar una relación de muchos a uno </il>
+					  <li><b>@ManyToMany :</b> se encarga de generar una relación de muchos a uno </il>
+					  <li><b>@OneToMany :</b> se encarga de generar una relación de muchos a uno </il>
+						<li><b>@OneToOne :</b>  se encarga de generar una relación de muchos a uno </il>
+           <ul>
+					</p>
+				</section>
+				<section>
+          <h2 class="anotation">@ManyToOne</h2>
+					<pre>
+					<code class="hljs" data-trim  style="max-height:600px">
+//Clase SaldoCliente
+public void saldoCliente {
+	int id;
+	int idCliente;
+	double monto;
+
+	 @ManyToOne
+	 @JoinColumn(name = "idCliente")
+	 Cliente cliente;
+}
+
+//Clase Cliente
+public void Cliente {
+  int id;
+  String nombre;
+  String apellidos;
+}
+					</code>
+				</pre>
+				</section>
+
+				<section>
+					<h2 class="anotation">@OneToMany</h2>
+					<pre>
+					<code class="hljs" data-trim  style="max-height:600px">
+//Clase SaldoCliente
+public void saldoCliente {
+	int id;
+	int idCliente;
+	double monto;
+}
+
+//Clase Cliente
+public void Cliente {
+  int id;
+  String nombre;
+  String apellidos;
+
+  @ManyToOne
+  @JoinColumn(name = "idCliente", referenceColumn = "id")
+  List<saldoCliente> cliente;
+
+}
+					</code>
+				</pre>
+				</section>
+				<section>
+					<h2 class="anotation">@OneToOne</h2>
+					<pre>
+					<code class="hljs" data-trim  style="max-height:600px">
+
+public void NumeroCelular {
+	int id;
+	int idCliente;
+	String numeroDeCeluar;
+}
+
+
+public void Cliente {
+	int id;
+	String nombre;
+	String apellidos;
+
+	@ManyToOne
+	@JoinColumn(name = "idCliente")
+	NumeroCelular numeroCelular;
+
+}
+					</code>
+				</pre>
+				</section>
+				<section>
+					<h2 class="anotation">@ManyToMany</h2>
+					<pre>
+					<code class="hljs" data-trim  style="max-height:600px">
+
+	public void Materias {
+	int id;
+	int idAlumnos;
+	String numeroDeCeluar;
+	}
+
+
+	public void Alumnos {
+	int id;
+	String nombre;
+	String apellidos;
+
+	@ManyToMany
+	@JoinColumn(name = "idCliente")
+	List<Materias> materias;
+
+	}
+					</code>
+				</pre>
+				</section>
+
+			</section>
+
+			<section>
+				<img src="https://media.giphy.com/media/CObqVWt7S889O/giphy.gif" alt="" height="" />
+				<h2>Gracias por su atención!</h2>
+			</section>
+
 		</div>
 	</div>
-
 
 	<script src="lib/js/head.min.js"></script>
 	<script src="js/reveal.js"></script>
