@@ -40,8 +40,6 @@
 			<section>
 				<section>
 					<h1 class="anotation">@DynamicInsert</h1>
-				</section>
-				<section>
 					<p>
 						Excluye las propiedades con valor nulo en la instrucción SQL INSERT de HIBERNATE.
 					</p>
@@ -64,9 +62,7 @@
 
 			<section>
 				<section>
-					<h1 class="anotation">@DynamicInsert</h1>
-				</section>
-				<section>
+					<h1 class="anotation">@DynamicUpdate</h1>
 					<p>
 						Excluye las propiedades sin modificar en la sentencia de actualización SQL de HIBERNATE.
 					</p>
@@ -84,14 +80,6 @@
 				</pre>
 				</section>
 			</section>
-
-			<section>
-				<section>
-					<h1 class="anotation">@Data</h1>
-					<img src="img/entiyes.png" alt="entities" />
-				</section>
-			</section>
-
 			<section>
 				<section>
 					<h2>Entidad</h2>
@@ -116,7 +104,12 @@
 					</p>
 				</section>
 			</section>
-
+			<section>
+				<h2 class="anotation">@Transient</h2>
+				<p>
+					Se utiliza para indicar que un campo no debe ser persistido en el ENTITY, es decir, la propiedad no pertenece a un campo de la base de datos.
+				</p>
+			</section>
 			<section>
 				<section>
 					<h2 class="anotation">Repository</h2>
@@ -220,39 +213,47 @@
 
 			<section>
 				<section>
-					<img src="img/gradle.png" alt="Gradle" height="100px" class="no-frame" />
-					<p style="font-size:smaller">
-						Gradle es una herramienta para automatizar la construcción de nuestros proyectos, por ejemplo las tareas de compilación, testing, empaquetado y el despliegue de los mismos. Es muy flexible para la configuración, pero además ya tiene armadas las tareas
-						para las mayoría de los proyectos por default. Esta herramienta es usado por grandes proyecto “Open Source” como “Spring”, “Hibernate”, y “Grails”. (También lo usan empresas como “LinkedIn” para sus proyectos)
+					<h2 class="anotation">@RequestMapping</h2>
+					<p>
+						La emplea Spring para conocer a que Controller o método de un Controller tiene que direccionar cada llamada del cliente.
 					</p>
 				</section>
 				<section>
-					<img src="img/gradle-config.png" alt="configuracion-gradle" />
+					<h3 class="anotation">method</h3>
+					<h3 class="anotation">value</h3>
+					<h3 class="anotation">produces</h3>
+					<h3 class="anotation">consumes</h3>
+					<p>
+						@RequestMapping(method = RequestMethod.POST, value = "dispersion-stp", produces = "application/hal+json")
+					</p>
 				</section>
+			</section>
+			<section>
+				<h3 class="anotation">@GetMapping</h3>
+				<h3 class="anotation">@PostMapping</h3>
+				<h3 class="anotation">@PutMapping</h3>
+				<h3 class="anotation">@DeleteMapping</h3>
+				<h3 class="anotation">@DeleteMapping</h3>
 			</section>
 
 			<section>
 				<section>
-					<h2>TDD</h2>
+					<h2 class="anotation">@PathVariable</h2>
 					<p>
-						TDD se basa en la idea de realizar pruebas unitarias para el codigo que debemos construir. A diferencia del procedimiento que usamos habitualmente, construir el codigo y despues realizar las pruebas unitarias, TDD establece que primero hay que realizar
-						una prueba y a continuación desarrollar el codigo que la resuelve.
+						Anotación que indica que un parámetro de método debe estar sujeta a una variable URI
+					</p>
+					<p>
+						http://localhost:8080/api/clientes/1001
 					</p>
 				</section>
 				<section>
-					<h3>Ciclo de desarrollo de TDD</h3>
-					<ul type="circle">
-						<li>Elegir un requisito a desarrollar</li>
-						<li>Crear la prueba o test </li>
-						<li>Ejecutar los tests: <a href="" style="color:red">falla</a></li>
-						<li>Crear codigo especifico para resolver el test </li>
-						<li>Ejecutar de nuevo los tests: <a href="" style="color:green">pasa</a></li>
-						<li>Refactorizar el codigo</li>
-						<li>Ejecutar los tests: <a href="" style="color:green">pasa</a> </li>
-					</ul>
-				</section>
-				<section>
-					<img class="no-frame" src="img/red-green-refactor.png" alt="" />
+					<pre>
+						<code class="hljs" data-trim contenteditable style="max-height:600px">
+@GetMapping("/clientes/{idCliente}")
+public Resource<Cliente> get(@PathVariable(value = "idCliente") Integer idCliente)  {
+}
+					</code>
+				</pre>
 				</section>
 			</section>
 <!--MIO-->
@@ -399,21 +400,6 @@ Indica que una clase declara uno o más métodos @Bean y puede ser procesada por
 
 			</section>
 
-			<section>
-				<section>
-					<h2 class="anotation"> @Configuration</h2>
-					<p>
-
-	Indica que una clase declara uno o más métodos @Bean y puede ser procesada por el contenedor de Spring para generar definiciones de beans y solicitudes de servicio para esos beans en tiempo de ejecución.
-					</p>
-				</section>
-				<section>
-					<h2 class="anotation">@Configuration</h2>
-					<img src="img/Configuration.png" alt="entities" />
-				</section>
-
-			</section>
-
 
 			<section>
 				<section>
@@ -428,40 +414,33 @@ Indica que una clase declara uno o más métodos @Bean y puede ser procesada por
 <!--MIO-->
 
 			<section>
-				<img src="img/hibernate_logo.png" alt="Hibernate" class="no-frame" />
-				<p>
-					Hibernate es una herramienta de Mapeo objeto-relacional (ORM) para la plataforma Java (y disponible también para .Net con el nombre de NHibernate) que facilita el mapeo de atributos entre una base de datos relacional tradicional y el modelo de objetos
-					de una aplicación, mediante archivos declarativos (XML) o anotaciones en los beans de las entidades que permiten establecer estas relaciones.
-				</p>
-			</section>
-			<section>
 				<section>
-					<img src="img/testing.png" alt="Hibernate" class="no-frame" />
+					<h2 class="anotation">@RequestParam</h2>
 					<p>
-						Spring Boot proporciona una serie de utilidades y anotaciones para ayudar al probar la aplicación. Prueba de apoyo es proporcionado por dos módulos;
-						<B>'spring-boot-test'</B> contiene elementos centrales, y
-						<B>'spring-boot-test-autoconfigure'</B> es compatible con la configuración automática de pruebas.
+						Anotación utilizada para acceder a los valores de los parámetros de la solicitud al controller.
 					</p>
+					<p>
+						http://localhost:8080/api/clientes/saldo?param1=algo
+					</p>
+				</section>
+				<section>
+					<pre>
+						<code class="hljs" data-trim contenteditable style="max-height:600px">
+@RequestMapping(method = RequestMethod.GET, value = "algo")
+public String getDetails(
+@RequestParam(value="param1", required=true) String param1){
+...
+}
+					</code>
+				</pre>
 				</section>
 			</section>
 			<section>
-				<img src="img/junit5-banner.png" alt="JUnit" class="no-frame" />
+				<h3 class="anotation">@Autowired </h3>
 				<p>
-					JUnit es un conjunto de clases (framework) que permite realizar la ejecución de clases Java de manera controlada, para poder evaluar si el funcionamiento de cada uno de los métodos de la clase se comporta como se espera.
+					Permite resolver la inyección de dependencia.
 				</p>
 			</section>
-			<section>
-				<img src="img/mokito.png" alt="JUnit" class="no-frame" />
-				<p>
-					Mockito es un Framework para pruebas de aplicaciones JAVA. Permite simular comportamientos complejos de objetos, además facilita el desarrollo de test unitarios y la detección de errores.
-				</p>
-			</section>
-
-			<section>
-				<img src="https://media.giphy.com/media/CObqVWt7S889O/giphy.gif" alt="" height="" />
-				<h2>Gracias por su atención!</h2>
-			</section>
-
 		</div>
 	</div>
 
