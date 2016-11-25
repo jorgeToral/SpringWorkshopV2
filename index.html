@@ -99,8 +99,22 @@
 						@Entity
 					</p>
 					<p class="anotation">
+						@Id
+					</p>
+					<p>
+						Indica la llave primaria de un entity
+					</p>
+					<p class="anotation">
+						@GeneratedValue(strategy = GenerationType.AUTO)
+					</p>
+					<p>
+						Indica como se genera el valor de un campo.
+					</p>
+					<p class="anotation">
 						@Table(name = "")
 					</p>
+					<p>
+						Indica nombre de tabla a la que pertenece el Entity
 					</p>
 				</section>
 				<section>
@@ -339,6 +353,162 @@ public Resource<Cliente> get(@PathVariable(value = "idCliente") Integer idClient
 				</pre>
 				</section>
 			</section>
+<!--MIO-->
+
+			<section>
+				<section>
+					<h2 class="anotation" >@Embedded</h2>
+					<p>
+						Indicamos que el campo o la propiedad de una entidad es una instancia de una clase que puede ser integrable.
+					</p>
+				</section>
+				<section>
+					<h2 class="anotation">@Embedded</h2>
+					<img src="img/embedded.png" alt="entities" />
+				</section>
+
+			</section>
+
+			<section>
+				<section>
+					<h2 class="anotation">@Embeddable</h2>
+					<p>
+						Con esta anotación, indicamos que la clase puede ser “integrable” dentro de una entidad.
+					</p>
+				</section>
+				<section>
+					<h2 class="anotation">@Embeddable</h2>
+					<img src="img/Embeddable.png" alt="entities" />
+				</section>
+
+			</section>
+
+			<section>
+				<section>
+					<h2 class="anotation" >@RequestBody</h2>
+					<p>
+					 Esta anotación indica que un parámetro de método debe estar enlazada al cuerpo de la solicitud web.
+					</p>
+				</section>
+				<section>
+					<h2 class="anotation">@RequestBody</h2>
+					<img src="img/RequestBody.png" alt="entities" />
+				</section>
+
+			</section>
+
+			<section>
+				<section>
+					<h2 class="anotation">@ResponseBody</h2>
+					<p>
+					 Esta anotación indica que un parámetro de método debe estar enlazada al cuerpo de la solicitud web.
+					</p>
+				</section>
+				<section>
+					<h2 class="anotation">@ResponseBody</h2>
+					<img src="img/ResponseBody.png" alt="entities" />
+				</section>
+
+			</section>
+
+			<section>
+				<section>
+					<h2 class="anotation">@Repository</h2>
+					<p>
+ 						Un mecanismo para encapsular el almacenamiento, la recuperación y el comportamiento de búsqueda que emula una colección de objetos.
+					</p>
+				</section>
+				<section>
+					<h2 class="anotation">@Repository</h2>
+					<img src="img/Repository.png" alt="entities" />
+				</section>
+
+			</section>
+
+			<section>
+				<section>
+					<h2 class="anotation" > @RepositoryRestResource</h2>
+					<p>
+					 Esta anotación indica que un parámetro de método debe estar enlazada al cuerpo de la solicitud web.
+					</p>
+				</section>
+				<section>
+					<h2 class="anotation">@RepositoryRestResource</h2>
+					<img src="img/RepositoryRestResource.png" alt="entities" />
+				</section>
+
+			</section>
+
+			<section>
+				<section>
+					<h2 class="anotation"> @Param</h2>
+					<p>
+							Proporciona el nombre, el tipo y la descripción de un parámetro de función.
+					</p>
+				</section>
+				<section>
+					<h2 class="anotation">@Param</h2>
+					<img src="img/Param.png" alt="entities" />
+				</section>
+
+			</section>
+
+			<section>
+				<section>
+					<h2 class="anotation"> @Transactional</h2>
+					<p>
+							 Es un metadato que especifica que una interfaz, clase o método debe tener semántica transaccional.
+					</p>
+				</section>
+				<section>
+					<h2 class="anotation">@Transactional</h2>
+					<img src="img/Transactional.png" alt="entities" />
+				</section>
+
+			</section>
+
+			<section>
+				<section>
+					<h2 class="anotation"> @Component</h2>
+					<p>
+
+Indica que una clase es un "componente". Tales clases se consideran como candidatos para la detección automática cuando se utiliza la configuración basada en anotaciones y la exploración de ruta de clase.
+					</p>
+				</section>
+				<section>
+					<h2 class="anotation">@Component</h2>
+					<img src="img/Component.png" alt="entities" />
+				</section>
+
+			</section>
+
+			<section>
+				<section>
+					<h2 class="anotation"> @Configuration</h2>
+					<p>
+
+Indica que una clase declara uno o más métodos @Bean y puede ser procesada por el contenedor de Spring para generar definiciones de beans y solicitudes de servicio para esos beans en tiempo de ejecución.
+					</p>
+				</section>
+				<section>
+					<h2 class="anotation">@Configuration</h2>
+					<img src="img/Configuration.png" alt="entities" />
+				</section>
+
+			</section>
+
+
+			<section>
+				<section>
+					<h2 class="anotation"> @Test</h2>
+					<p>
+
+				Son usados para las pruebas unitarias
+					</p>
+				</section>
+
+			</section>
+<!--MIO-->
 
 			<section>
 				<section>
@@ -625,6 +795,13 @@ public void Cliente {
 
 		</div>
 	</div>
+
+	<section>
+		<section>
+			<h1 class="anotation">@Data</h1>
+			<img src="img/entiyes.png" alt="entities" />
+		</section>
+	</section>
 
 	<script src="lib/js/head.min.js"></script>
 	<script src="js/reveal.js"></script>
