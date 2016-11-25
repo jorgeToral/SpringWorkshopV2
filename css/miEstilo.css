@@ -1,0 +1,14 @@
+
+.no-frame {
+ border:none !important;
+ box-shadow:none !important;
+ background: none !important;
+}
+
+#querys{
+  font-size: x-large
+}
+.anotation{
+  color: yellow !important;
+  text-transform:none !important;
+}

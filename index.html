@@ -1,0 +1,308 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Spring Framework</title>
+
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/moon.css">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<link rel="stylesheet" href="css/miEstilo.css" media="screen" title="no title">
+
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+</head>
+
+<body>
+	<div class="reveal convex">
+		<div class="slides">
+			<section>
+				<img alt="spring" src="img/spring-by-pivotal.png" height="200px" width="600px" class="no-frame">
+				<h3>Spring Framework</h3>
+				<p>
+					<small>Created by <a href="">Team Darwin</a></small>
+				</p>
+			</section>
+			<section>
+				<h2>¿Que es Spring?</h2>
+				<p>
+					El Spring Framework es una plataforma Java que proporciona un amplio soporte de infraestructura para el desarrollo de aplicaciones Java.
+				</p>
+			</section>
+			<section>
+				<section>
+					<h2>Caracteristicas Principales</h2>
+					<ul type="circle">
+						<li>Inyección de dependencia</li>
+						<li>Programación Orientada a Aspectos incluyendo la gestión de transacciones declarativa de Spring</li>
+						<li>Spring MVC marco de aplicaciones web y servicios web REST </li>
+						<li>Apoyo fundamental para JDBC, JPA, JMS.</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Requerimientos mínimos</h2>
+					<ul type="square">
+						<li>JDK 6+ para 4.x Spring Framework</li>
+						<li>JDK 5+ para 3.x Spring Framework</li>
+					</ul>
+				</section>
+			</section>
+			<!-- Example of nested vertical slides -->
+
+			<section>
+				<section>
+					<h2>Entidad</h2>
+					<p>
+						Una entidad de persistencia (entity) es una clase de Java ligera, cuyo estado es persistido de manera asociada a una tabla en una base de datos relacional.
+					</p>
+				</section>
+				<section>
+					<h2 class="anotation">@Entity</h2>
+					<img src="img/entiyes.png" alt="entities" />
+				</section>
+				<section>
+					<p class="anotation">
+						@Data
+					</p>
+					<p class="anotation">
+						@Entity
+					</p>
+					<p class="anotation">
+						@Table(name = "")
+					</p>
+					</p>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2 class="anotation">Repository</h2>
+					<img src="img/repository.png" alt="repository" />
+				</section>
+				<section>
+					<h2 class="anotation">@RepositoryRestResource</h2>
+					<p>
+						exported = false/true
+					</p>
+					<p>
+						path = "nombre"
+					</p>
+				</section>
+			</section>
+
+			<section id="querys">
+				<h2 class="anotation">Querys</h2>
+				<table>
+					<tr>
+						<th style="text-align: center;">Keyword</th>
+						<th style="text-align: center;">Sample</th>
+						<th style="text-align: center;">JPQL snippet</th>
+					</tr>
+					<tr>
+						<td>And</td>
+						<td>findByLastnameAndFirstname</td>
+						<td>… where x.lastname = ?1 and x.firstname = ?2</td>
+					</tr>
+					<tr>
+						<td>Between</td>
+						<td>findByStartDateBetween</td>
+						<td>… where x.startDate between ?1 and ?2</td>
+					</tr>
+					<tr>
+						<td>LessThan</td>
+						<td>findByAgeLessThan</td>
+						<td>… where x.age
+							< ?1</td>
+					</tr>
+					<tr>
+						<td>After</td>
+						<td>findByStartDateAfter</td>
+						<td>… where x.startDate > ?1</td>
+					</tr>
+					<tr>
+						<td>OrderBy</td>
+						<td>findByAgeOrderByLastnameDesc</td>
+						<td>… where x.age = ?1 order by x.lastname desc</td>
+					</tr>
+				</table>
+			</section>
+
+			<section id="fragments">
+				<section>
+					<h2 class="anotation">@Query</h2>
+					<p>@Query("select u from User u where u.emailAddress = ?1")</p>
+					<p class="fragment">User findByEmailAddress(String emailAddress)</p>
+				</section>
+			</section>
+
+			<section id="fragments">
+				<section>
+					<h2 class="anotation">@RestController</h2>
+					<img src="img/controller.png" alt="controller" />
+				</section>
+				<section>
+					<pre>
+						<code class="hljs" data-trim contenteditable style="max-height:600px">
+
+	@RestController
+	@RequestMapping(value = "api/series")
+	public class SeriesController {
+
+	  @Autowired
+	  private SerieRepository serieRepository;
+
+	  @Autowired
+	  private Validator validator;
+
+	  @Autowired
+	  private SeriesApplication seriesApplication;
+
+	  @RequestMapping(method = RequestMethod.POST, produces = "application/hal+json")
+	  private Serie save(@RequestBody Serie serie) {
+
+	    this.validator.isNotNull(serie, "serie no debe ser null");
+
+	    return this.serieRepository.save(serie);
+	  }
+
+	}
+
+					</code>
+				</pre>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<img src="img/gradle.png" alt="Gradle" height="100px" class="no-frame" />
+					<p style="font-size:smaller">
+						Gradle es una herramienta para automatizar la construcción de nuestros proyectos, por ejemplo las tareas de compilación, testing, empaquetado y el despliegue de los mismos. Es muy flexible para la configuración, pero además ya tiene armadas las tareas
+						para las mayoría de los proyectos por default. Esta herramienta es usado por grandes proyecto “Open Source” como “Spring”, “Hibernate”, y “Grails”. (También lo usan empresas como “LinkedIn” para sus proyectos)
+					</p>
+				</section>
+				<section>
+					<img src="img/gradle-config.png" alt="configuracion-gradle" />
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2>TDD</h2>
+					<p>
+						TDD se basa en la idea de realizar pruebas unitarias para el codigo que debemos construir. A diferencia del procedimiento que usamos habitualmente, construir el codigo y despues realizar las pruebas unitarias, TDD establece que primero hay que realizar
+						una prueba y a continuación desarrollar el codigo que la resuelve.
+					</p>
+				</section>
+				<section>
+					<h3>Ciclo de desarrollo de TDD</h3>
+					<ul type="circle">
+						<li>Elegir un requisito a desarrollar</li>
+						<li>Crear la prueba o test </li>
+						<li>Ejecutar los tests: <a href="" style="color:red">falla</a></li>
+						<li>Crear codigo especifico para resolver el test </li>
+						<li>Ejecutar de nuevo los tests: <a href="" style="color:green">pasa</a></li>
+						<li>Refactorizar el codigo</li>
+						<li>Ejecutar los tests: <a href="" style="color:green">pasa</a> </li>
+					</ul>
+				</section>
+				<section>
+					<img class="no-frame" src="img/red-green-refactor.png" alt="" />
+				</section>
+			</section>
+
+			<section>
+				<img src="img/hibernate_logo.png" alt="Hibernate" class="no-frame" />
+				<p>
+					Hibernate es una herramienta de Mapeo objeto-relacional (ORM) para la plataforma Java (y disponible también para .Net con el nombre de NHibernate) que facilita el mapeo de atributos entre una base de datos relacional tradicional y el modelo de objetos
+					de una aplicación, mediante archivos declarativos (XML) o anotaciones en los beans de las entidades que permiten establecer estas relaciones.
+				</p>
+			</section>
+			<section>
+				<section>
+					<img src="img/testing.png" alt="Hibernate" class="no-frame" />
+					<p>
+						Spring Boot proporciona una serie de utilidades y anotaciones para ayudar al probar la aplicación. Prueba de apoyo es proporcionado por dos módulos;
+						<B>'spring-boot-test'</B> contiene elementos centrales, y
+						<B>'spring-boot-test-autoconfigure'</B> es compatible con la configuración automática de pruebas.
+					</p>
+				</section>
+			</section>
+			<section>
+				<img src="img/junit5-banner.png" alt="JUnit" class="no-frame" />
+				<p>
+					JUnit es un conjunto de clases (framework) que permite realizar la ejecución de clases Java de manera controlada, para poder evaluar si el funcionamiento de cada uno de los métodos de la clase se comporta como se espera.
+				</p>
+			</section>
+			<section>
+				<img src="img/mokito.png" alt="JUnit" class="no-frame" />
+				<p>
+					Mockito es un Framework para pruebas de aplicaciones JAVA. Permite simular comportamientos complejos de objetos, además facilita el desarrollo de test unitarios y la detección de errores.
+				</p>
+			</section>
+
+			<section>
+				<img src="https://media.giphy.com/media/CObqVWt7S889O/giphy.gif" alt="" height="" />
+				<h2>Gracias por su atención!</h2>
+			</section>
+
+		</div>
+	</div>
+
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.js"></script>
+
+	<script>
+		// More info https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			history: true,
+			center: true,
+			// More info https://github.com/hakimel/reveal.js#dependencies
+			dependencies: [{
+				src: 'lib/js/classList.js',
+				condition: function() {
+					return !document.body.classList;
+				}
+			}, {
+				src: 'plugin/markdown/marked.js',
+				condition: function() {
+					return !!document.querySelector('[data-markdown]');
+				}
+			}, {
+				src: 'plugin/markdown/markdown.js',
+				condition: function() {
+					return !!document.querySelector('[data-markdown]');
+				}
+			}, {
+				src: 'plugin/highlight/highlight.js',
+				async: true,
+				callback: function() {
+					hljs.initHighlightingOnLoad();
+				}
+			}, {
+				src: 'plugin/zoom-js/zoom.js',
+				async: true
+			}, {
+				src: 'plugin/notes/notes.js',
+				async: true
+			}]
+		});
+	</script>
+</body>
+
+</html>
